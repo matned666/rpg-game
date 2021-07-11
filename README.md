@@ -31,7 +31,7 @@ VM settings: <br>
 RUN AND BE HAPPY!
 
 
-![Screenshot](https://raw.githubusercontent.com/matned666/medical_pointer_app/Matned/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/matned666/rpg-game/Matned/src/main/resources/screenshot1.jpg)
 
 ------------------------------
 # Tests
