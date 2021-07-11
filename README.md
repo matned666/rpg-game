@@ -1,4 +1,4 @@
-# Medical roentgen pointer
+# RPG
 
 Simple rpg game - happening in times of Hussite Wars<br>
 still in production
@@ -31,7 +31,7 @@ VM settings: <br>
 RUN AND BE HAPPY!
 
 
-![Screenshot](https://raw.githubusercontent.com/matned666/rpg-game/Matned/src/main/resources/screenshot1.jpg)
+![Screenshot](https://raw.githubusercontent.com/matned666/rpg-game/master/src/main/resources/screenshot1.jpg)
 
 ------------------------------
 # Tests
