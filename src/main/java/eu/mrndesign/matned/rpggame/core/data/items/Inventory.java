@@ -2,26 +2,31 @@ package eu.mrndesign.matned.rpggame.core.data.items;
 
 
 import eu.mrndesign.matned.rpggame.core.data.items.utils.Direction;
+import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
 public class Inventory extends BaseMovingObject implements IInventory {
 
 
+    private InventoryType inventoryType;
     private Integer mHC; //  melee hit chance
     private Integer mHV; // melee hit value
     private Integer rHC; // ranged hit chance
     private Integer rHV; // rabged hit value
-    private final boolean isFireproof;
-    private final boolean isWaterproof;
+    private boolean isFireproof;
+    private boolean isWaterproof;
     private Integer fireResistance;
     private Integer waterResistance;
     private final IAttributes attributesModifier;
 
+
     public Inventory(InventoryDTOBuilder builder) {
+        this.inventoryType = builder.inventoryType;
         this.id = builder.id;
         this.symbol = builder.symbol;
         this.name = builder.name;
+        this.image = builder.image;
         this.hP = builder.HP;
         this.x = builder.x;
         this.y = builder.y;
@@ -50,6 +55,11 @@ public class Inventory extends BaseMovingObject implements IInventory {
                     (Direction.changeY(direction) + collider.getY() == this.y);
     }
 
+
+    @Override
+    public InventoryType getInventoryType() {
+        return inventoryType;
+    }
 
     @Override
     public Integer getPV() {
@@ -174,9 +184,11 @@ public class Inventory extends BaseMovingObject implements IInventory {
 
     public static class InventoryDTOBuilder {
 
+        private final InventoryType inventoryType;
         private Long id;
         private Symbol symbol;
         private String name;
+        private String image;
         private int HP;
         private Double x;
         private Double y;
@@ -194,8 +206,36 @@ public class Inventory extends BaseMovingObject implements IInventory {
         private Integer waterResistance;
         private IAttributes attributesModifier;
 
-        public InventoryDTOBuilder(Symbol symbol) {
+        public InventoryDTOBuilder(InventoryType inventoryType) {
+            initDefaultValues();
+            this.inventoryType = inventoryType;
+        }
+
+        public InventoryDTOBuilder(InventoryType inventoryType, Symbol symbol) {
+            initDefaultValues();
+            this.inventoryType = inventoryType;
             this.symbol = symbol;
+        }
+
+        private void initDefaultValues(){
+            id = 0L;
+            symbol = new Symbol('!', Color.RED);
+            name = "Item";
+            HP = 0;
+            x = 0.0;
+            y = 0.0;
+            weight = 0.0;
+            isVisible = true;
+            pV = 0;
+            dV = 0;
+            mHC = 0;
+            mHV = 0;
+            rHC = 0;
+            rHV = 0;
+            isFireproof = false;
+            isWaterproof = false;
+            fireResistance = 0;
+            waterResistance = 0;
         }
 
         public InventoryDTOBuilder HP(int HP) {
@@ -280,6 +320,11 @@ public class Inventory extends BaseMovingObject implements IInventory {
 
         public InventoryDTOBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public InventoryDTOBuilder image(String image) {
+            this.image = image;
             return this;
         }
 

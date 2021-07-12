@@ -12,6 +12,7 @@ public class City extends MapFragment{
     public City(IMapFragment eastNode, IMapFragment westNode, IMapFragment northNode, IMapFragment southNode, Integer x, Integer y) {
         super(eastNode, westNode, northNode, southNode, x, y);
         name = getRandomCityName();
+        this.imageName = WATER_MAP;
     }
 
     @Override

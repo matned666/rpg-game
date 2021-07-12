@@ -1,15 +1,17 @@
 package eu.mrndesign.matned.rpggame.core.data.items;
 
 
+import java.util.List;
 import java.util.Objects;
 
-public class Creature extends BaseMovingObject implements ICreature {
+public class Creature extends BaseMovingObject implements ICreature, IInventorySlots {
 
 
     private final IAttributes attributes;
     private final IStateOfMind stateOfMind;
     private final String race;
     private boolean isAlive;
+    private final IInventorySlots inventory;
 
 
     private Creature(CreatureDTOBuilder builder) {
@@ -22,6 +24,7 @@ public class Creature extends BaseMovingObject implements ICreature {
         this.dV = builder.dV;
         this.weight = builder.weight;
         this.name = builder.name;
+        this.image = builder.image;
         this.hP = builder.hP;
         this.attributes = builder.attributes;
         this.stateOfMind = builder.stateOfMind;
@@ -30,8 +33,14 @@ public class Creature extends BaseMovingObject implements ICreature {
         this.isAlive = builder.isAlive;
         this.isFireproof = builder.isFireproof;
         this.isWaterproof = builder.isWaterproof;
+        this.inventory = new InventorySlots();
     }
 
+
+    @Override
+    public IInventorySlots getInventory() {
+        return this.inventory;
+    }
 
     @Override
     public IAttributes getAttributes() {
@@ -58,6 +67,8 @@ public class Creature extends BaseMovingObject implements ICreature {
     public void setAlive() {
         this.isAlive = !isAlive;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -91,11 +102,152 @@ public class Creature extends BaseMovingObject implements ICreature {
                 '}';
     }
 
+    @Override
+    public List<IInventory> getInventoryInBackpack() {
+        return inventory.getInventoryInBackpack();
+    }
+
+    @Override
+    public void putHelmet(IInventory inventory) {
+        this.inventory.putHelmet(inventory);
+    }
+
+    @Override
+    public void removeHelmet() {
+        inventory.removeHelmet();
+    }
+
+    @Override
+    public IInventory getHelmet() {
+        return inventory.getHelmet();
+    }
+
+    @Override
+    public void putArmor(IInventory inventory) {
+        this.inventory.putArmor(inventory);
+    }
+
+    @Override
+    public void removeArmor() {
+        inventory.removeArmor();
+    }
+
+    @Override
+    public IInventory getArmor() {
+        return inventory.getArmor();
+    }
+
+    @Override
+    public void putShoes(IInventory inventory) {
+        this.inventory.putShoes(inventory);
+    }
+
+    @Override
+    public void removeShoes() {
+        inventory.removeShoes();
+    }
+
+    @Override
+    public IInventory getShoes() {
+        return inventory.getShoes();
+    }
+
+    @Override
+    public void putGloves(IInventory inventory) {
+        this.inventory.putGloves(inventory);
+    }
+
+    @Override
+    public void removeGloves() {
+        inventory.removeGloves();
+    }
+
+    @Override
+    public IInventory getGloves() {
+        return inventory.getGloves();
+    }
+
+    @Override
+    public void putBelt(IInventory inventory) {
+        this.inventory.putBelt(inventory);
+    }
+
+    @Override
+    public void removeBelt() {
+        inventory.removeBelt();
+    }
+
+    @Override
+    public IInventory getBelt() {
+        return inventory.getBelt();
+    }
+
+    @Override
+    public void putPrimaryMeleeWeapon(IInventory inventory) {
+        this.inventory.putPrimaryMeleeWeapon(inventory);
+    }
+
+    @Override
+    public void removePrimaryMeleeWeapon() {
+        inventory.removePrimaryMeleeWeapon();
+    }
+
+    @Override
+    public IInventory getPrimaryMeleeWeapon() {
+        return inventory.getPrimaryMeleeWeapon();
+    }
+
+    @Override
+    public void putSecondaryMeleeWeapon(IInventory inventory) {
+        this.inventory.putSecondaryMeleeWeapon(inventory);
+    }
+
+    @Override
+    public void removeSecondaryMeleeWeapon() {
+        inventory.removeSecondaryMeleeWeapon();
+    }
+
+    @Override
+    public IInventory getSecondaryMeleeWeapon() {
+        return inventory.getSecondaryMeleeWeapon();
+    }
+
+    @Override
+    public void putRangedWeapon(IInventory inventory) {
+        this.inventory.putRangedWeapon(inventory);
+    }
+
+    @Override
+    public void removeRangedWeapon() {
+        inventory.removeRangedWeapon();
+    }
+
+    @Override
+    public IInventory getRangedWeapon() {
+        return inventory.getRangedWeapon();
+    }
+
+    @Override
+    public void putAmulet(IInventory inventory) {
+        this.inventory.putAmulet(inventory);
+    }
+
+    @Override
+    public void removeAmulet() {
+        inventory.removeAmulet();
+    }
+
+    @Override
+    public IInventory getAmulet() {
+        return inventory.getAmulet();
+    }
+
     public static class CreatureDTOBuilder {
 
         private Long id;
-        private Symbol symbol;
+        private final Symbol symbol;
         private String name;
+        private String image;
         private Double x;
         private Double y;
         private Double weight;
@@ -116,6 +268,11 @@ public class Creature extends BaseMovingObject implements ICreature {
 
         public CreatureDTOBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public CreatureDTOBuilder image(String image) {
+            this.image = image;
             return this;
         }
 
@@ -156,11 +313,6 @@ public class Creature extends BaseMovingObject implements ICreature {
 
         public CreatureDTOBuilder stateOfMind(IStateOfMind stateOfMind) {
             this.stateOfMind = stateOfMind;
-            return this;
-        }
-
-        public CreatureDTOBuilder species(String race) {
-            this.race = race;
             return this;
         }
 

@@ -12,6 +12,7 @@ public class Swamp extends MapFragment{
 
     public Swamp(IMapFragment eastNode, IMapFragment westNode, IMapFragment northNode, IMapFragment southNode, Integer x, Integer y) {
         super(eastNode, westNode, northNode, southNode, x, y);
+        this.imageName = WATER_MAP;
     }
 
     @Override

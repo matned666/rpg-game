@@ -11,7 +11,7 @@ public class Village extends MapFragment{
 
     public Village(IMapFragment eastNode, IMapFragment westNode, IMapFragment northNode, IMapFragment southNode, Integer x, Integer y) {
         super(eastNode, westNode, northNode, southNode, x, y);
-        name = WATER_MAP;
+        this.imageName = WATER_MAP;
     }
 
     @Override

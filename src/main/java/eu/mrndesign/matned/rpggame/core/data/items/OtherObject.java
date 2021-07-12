@@ -6,6 +6,7 @@ public class OtherObject extends BaseObject implements IGameObject {
     public OtherObject(OtherObjectDTOBuilder builder) {
         this.id = builder.id;
         this.symbol = builder.symbol;
+        this.image = builder.image;
         this.x = builder.x;
         this.y = builder.y;
         this.pV = builder.pV;
@@ -21,8 +22,9 @@ public class OtherObject extends BaseObject implements IGameObject {
     public static class OtherObjectDTOBuilder {
 
         private Long id;
-        private Symbol symbol;
+        private final Symbol symbol;
         private String name;
+        private String image;
         private int HP;
         private Integer pV;
         private Integer dV;
@@ -39,6 +41,11 @@ public class OtherObject extends BaseObject implements IGameObject {
 
         public OtherObjectDTOBuilder HP(int HP) {
             this.HP = HP;
+            return this;
+        }
+
+        public OtherObjectDTOBuilder image(String image) {
+            this.image = image;
             return this;
         }
 

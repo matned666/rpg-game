@@ -4,6 +4,8 @@ import eu.mrndesign.matned.rpggame.core.data.happening.Action;
 import eu.mrndesign.matned.rpggame.core.data.happening.Happening;
 import eu.mrndesign.matned.rpggame.core.data.items.ICreature;
 import eu.mrndesign.matned.rpggame.core.data.items.utils.Direction;
+import eu.mrndesign.matned.rpggame.core.data.map.City;
+import eu.mrndesign.matned.rpggame.core.data.map.IMapFragment;
 import eu.mrndesign.matned.rpggame.core.game.Game;
 import eu.mrndesign.matned.rpggame.core.game.Map;
 import eu.mrndesign.matned.rpggame.javafx.ActionController;
@@ -47,7 +49,7 @@ public class PointService implements IPointService {
         return instance;
     }
 
-
+    private Map map;
     private GridPane mapGrid;
     private VBox messagesList;
     private Canvas canvas;
@@ -87,13 +89,13 @@ public class PointService implements IPointService {
     @Override
     public void moveWest(){
         if (actualHeroX > 0) {
-            addNewLog("You move to the West.");
             Canvas canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             actualHeroX -= 1;
             canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             hero.move(Direction.WEST, 1D);
             draw(canvas.getGraphicsContext2D(), canvas.getWidth()/2, canvas.getHeight()/2);
+            getLogWhenMoved("West");
             roulette();
         }
     }
@@ -101,26 +103,26 @@ public class PointService implements IPointService {
     @Override
     public void moveNorth(){
         if (actualHeroY > 0) {
-            addNewLog("You move to the North.");
             Canvas canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             actualHeroY -= 1;
             canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             hero.move(Direction.NORTH, 1D);
             draw(canvas.getGraphicsContext2D(), canvas.getWidth()/2, canvas.getHeight()/2);
+            getLogWhenMoved("North");
             roulette();
         }    }
 
     @Override
     public void moveSouth(){
         if (actualHeroY < mapGrid.getRowCount()-1) {
-            addNewLog("You move to the South.");
             Canvas canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             actualHeroY += 1;
             canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             hero.move(Direction.SOUTH, 1D);
             draw(canvas.getGraphicsContext2D(), canvas.getWidth()/2, canvas.getHeight()/2);
+            getLogWhenMoved("South");
             roulette();
         }
     }
@@ -128,15 +130,21 @@ public class PointService implements IPointService {
     @Override
     public void moveEast(){
         if (actualHeroX < mapGrid.getColumnCount()-1) {
-            addNewLog("You move to the East.");
             Canvas canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             actualHeroX += 1;
             canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             canvas = canvases[(int) actualHeroX][(int) actualHeroY];
             hero.move(Direction.EAST, 1D);
             draw(canvas.getGraphicsContext2D(), canvas.getWidth()/2, canvas.getHeight()/2);
+            getLogWhenMoved("East");
             roulette();
         }
+    }
+
+    private void getLogWhenMoved(String direction) {
+        IMapFragment frag = map.getFrags()[(int) actualHeroX][(int) actualHeroY];
+        addNewLog("You move to the "+direction+"." + "You are passing a "+map.getFrags()[(int) actualHeroX][(int) actualHeroY].getImage());
+        if (frag.getImage().equals("city")) addNewLog("The city is called "+frag.getName());
     }
 
     @Override
@@ -165,20 +173,20 @@ public class PointService implements IPointService {
     }
 
     private void initiateMap(Node[] nodes) {
-        Map map = game.getMap();
+        map = game.getMap();
         this.messagesList = (VBox) nodes[0];
         this.mapGrid = (GridPane) nodes[1];
         for (int y = 0; y < mapGrid.getRowCount(); y++) {
             for (int x = 0; x < mapGrid.getColumnCount(); x++) {
-                AnchorPane anchorPane = new AnchorPane();
-                anchorPane.setPrefHeight(34);
-                anchorPane.setPrefWidth(36);
-                anchorPane.setBackground(Background.BACKGROUND_COLOR(map.getFrags()[x][y].getColor()));
+                Canvas background = new Canvas();
+                background.setHeight(34);
+                background.setWidth(36);
+                background.getGraphicsContext2D().drawImage(new Image("/maps/"+map.getFrags()[x][y].getImage()+".jpg"), 0, 0);
                 Canvas canvas = new Canvas();
                 canvas.setHeight(34);
                 canvas.setWidth(36);
 //                canvas.setOnMouseClicked(event-> draw(canvas.getGraphicsContext2D(), canvas.getWidth()/2, canvas.getHeight()/2));
-                mapGrid.add(anchorPane, x,y);
+                mapGrid.add(background, x,y);
                 canvases[x][y] = canvas;
                 mapGrid.add(canvas, x, y);
             }
@@ -200,7 +208,7 @@ public class PointService implements IPointService {
 //        context.setStroke(Color.DARKGRAY);
 //        context.fillOval(x-5,y-5,5*2,5*2);
 //        context.strokeOval(x-5,y-5,5*2,5*2);
-        context.drawImage(heroImage,5,5);
+        context.drawImage(heroImage,0,0);
     }
 
 

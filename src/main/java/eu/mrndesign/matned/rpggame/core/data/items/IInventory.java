@@ -2,6 +2,7 @@ package eu.mrndesign.matned.rpggame.core.data.items;
 
 public interface IInventory extends IMovingObject {
 
+    InventoryType getInventoryType();
 
     Integer getPV();
     void setPV(Integer pVModifier);
@@ -30,6 +31,21 @@ public interface IInventory extends IMovingObject {
     void setWaterResistance(Integer waterResistanceModifier);
 
 
+    enum InventoryType{
+
+        HELMET,
+        ARMOR,
+        SHOES,
+        GLOVES,
+        BELT,
+        MELEE_WEAPON,
+        RANGED_WEAPON,
+        AMULET,
+        FOOD,
+        BOOK,
+        OTHER
+
+    }
 
 
 }

@@ -13,6 +13,7 @@ public abstract class BaseObject implements IGameObject {
     protected Double y;
     protected Double weight;
     protected String name;
+    protected String image;
     protected Integer hP;
     protected boolean isVisible;
     protected boolean isFireproof;
@@ -66,6 +67,11 @@ public abstract class BaseObject implements IGameObject {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getImage() {
+        return image;
     }
 
     @Override

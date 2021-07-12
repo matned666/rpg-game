@@ -4,6 +4,8 @@ import eu.mrndesign.matned.rpggame.core.data.items.utils.Direction;
 
 public interface IGameObject {
 
+    String getImage();
+
     Long getId();
 
     String getName();

@@ -55,8 +55,9 @@ public abstract class MapFragment implements IMapFragment{
     }
 
     public String getImage() {
-        checkNodes();
-        imageName += nodeType.name();
+//        TODO
+//        checkNodes();
+//        imageName += nodeType.name();
         return imageName;
     }
 

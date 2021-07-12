@@ -18,4 +18,5 @@ public interface IMapFragment {
     void setX(Integer x);
     void setY(Integer y);
 
+
 }

@@ -71,6 +71,40 @@ public class Game {
                         .scared(0)
                         .build())
                 .build();
+        hero.putArmor(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.ARMOR)
+                .name("Leather armor")
+                .image("leather_armor")
+                .dV(getRandom(2, 10))
+                .pV(getRandom(2, 10))
+                .mHC(getRandom(1, 5))
+                .mHV(getRandom(1, 5))
+                .rHC(getRandom(1, 5))
+                .rHV(getRandom(1, 5))
+                .weight((double) getRandom(2, 10))
+                .build());
+        hero.putShoes(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.SHOES)
+                .name("Leather boots")
+                .image("leather_boots")
+                .dV(getRandom(1, 3))
+                .pV(getRandom(1, 4))
+                .mHC(getRandom(0, 2))
+                .mHV(getRandom(0, 2))
+                .rHC(getRandom(0, 2))
+                .rHV(getRandom(0, 2))
+                .weight((double) getRandom(1, 2))
+                .build());
+        hero.putPrimaryMeleeWeapon(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.SHOES)
+                .name("Short sword")
+                .image("short_sword")
+                .dV(getRandom(5, 20))
+                .pV(getRandom(2, 10))
+                .mHC(getRandom(10, 15))
+                .mHV(getRandom(5, 20))
+                .rHC(getRandom(2, 5))
+                .rHV(getRandom(1, 10))
+                .weight((double) getRandom(1, 4))
+                .build());;
+
     }
 
     public ICreature getHero() {

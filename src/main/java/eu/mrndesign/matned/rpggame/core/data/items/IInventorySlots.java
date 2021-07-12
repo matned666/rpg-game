@@ -3,18 +3,9 @@ package eu.mrndesign.matned.rpggame.core.data.items;
 
 import java.util.List;
 
-public interface ICreature extends IMovingObject {
-
-    IInventorySlots getInventory();
-    IAttributes getAttributes();
-    IStateOfMind getStateOfMind();
-
-    String getRace();
+public interface IInventorySlots {
 
 
-
-    boolean isAlive();
-    void setAlive();
 
     List<IInventory> getInventoryInBackpack();
 
