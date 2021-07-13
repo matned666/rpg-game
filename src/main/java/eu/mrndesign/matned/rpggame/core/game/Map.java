@@ -1,6 +1,7 @@
 package eu.mrndesign.matned.rpggame.core.game;
 
 import eu.mrndesign.matned.rpggame.core.data.map.*;
+import eu.mrndesign.matned.rpggame.javafx.utils.Variables;
 
 
 public class Map {
@@ -9,7 +10,7 @@ public class Map {
     IMapFragment[][] mapFragments;
 
     public Map() {
-        mapFragments = new IMapFragment[35][20];
+        mapFragments = new IMapFragment[Variables.MAP_X_FIELDS][Variables.MAP_Y_FIELDS];
         generateMap();
     }
 

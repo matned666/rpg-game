@@ -1,24 +1,38 @@
-package eu.mrndesign.matned.rpggame.core.data.items;
+package eu.mrndesign.matned.rpggame.core.game;
 
+import eu.mrndesign.matned.rpggame.core.IObserver;
+import eu.mrndesign.matned.rpggame.core.data.items.ICreature;
+import eu.mrndesign.matned.rpggame.core.data.items.IInventory;
 
 import java.util.List;
 
-public interface ICreature extends IMovingObject {
-
-    IInventorySlots getInventory();
-    IAttributes getAttributes();
-    IStateOfMind getStateOfMind();
-
-    String getRace();
-
-
-
-    boolean isAlive();
-    void setAlive();
+public interface IHero {
 
     List<IInventory> getInventoryInBackpack();
+    void addObserver(IObserver observer);
+
+    ICreature get();
+
+    int getX();
+    int getY();
+    int getPrevX();
+    int getPrevY();
+
+    void setX(int val);
+    void setY(int val);
+    void setPrevX(int val);
+    void setPrevY(int val);
 
 
+    void attackAction(ICreature creature);
+    void moveEast();
+    void moveWest();
+    void moveNorth();
+    void moveSouth();
+    void talk(ICreature creature);
+    void runAway();
+    void pickUpItems(List<IInventory> items);
+    void barter();
 
     void putHelmet(IInventory inventory);
     void removeHelmet();
@@ -55,6 +69,4 @@ public interface ICreature extends IMovingObject {
     void putAmulet(IInventory inventory);
     void removeAmulet();
     IInventory getAmulet();
-
-
 }

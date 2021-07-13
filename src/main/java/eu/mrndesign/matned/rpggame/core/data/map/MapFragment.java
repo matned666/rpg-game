@@ -4,6 +4,7 @@ public abstract class MapFragment implements IMapFragment{
 
     protected String name;
 
+    protected boolean isVisible;
     protected Integer x;
     protected Integer y;
 
@@ -27,6 +28,16 @@ public abstract class MapFragment implements IMapFragment{
         this.x = x;
         this.y = y;
 
+    }
+
+    @Override
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    @Override
+    public void setVisible() {
+        this.isVisible = !isVisible;
     }
 
     @Override

@@ -43,8 +43,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" text="Head" />
-                        <Button fx:id="helmetPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="helmetTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="helmetPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onHelmetPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="helmetTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onHelmetTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="113.0" prefWidth="496.0" style="-fx-border-color: grey; -fx-border-width: 2px;">
@@ -60,8 +60,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" text="Amulet" />
-                        <Button fx:id="amuletPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="amuletTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="amuletPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAmuletPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="amuletTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onAmuletTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="113.0" prefWidth="496.0" style="-fx-border-color: grey; -fx-border-width: 2px;">
@@ -77,8 +77,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" text="Armor" />
-                        <Button fx:id="armorPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="armorTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="armorPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onArmorPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="armorTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onArmorTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="113.0" prefWidth="496.0" style="-fx-border-color: grey; -fx-border-width: 2px;">
@@ -94,8 +94,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" text="Gloves" />
-                        <Button fx:id="glovesPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="glovesTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="glovesPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onGlovesPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="glovesTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onGlovesTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="113.0" prefWidth="496.0" style="-fx-border-color: grey; -fx-border-width: 2px;">
@@ -111,8 +111,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" text="Belt" />
-                        <Button fx:id="beltPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="beltTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="beltPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBeltPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="beltTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onBeltTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="113.0" prefWidth="496.0" style="-fx-border-color: grey; -fx-border-width: 2px;">
@@ -128,8 +128,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" text="Boots" />
-                        <Button fx:id="bootsPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="bootsTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="bootsPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBootsPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="bootsTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onBootsTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="113.0" prefWidth="496.0" style="-fx-border-color: grey; -fx-border-width: 2px;">
@@ -145,8 +145,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="14.0" layoutY="58.0" prefHeight="23.0" prefWidth="55.0" text="Primary" />
-                        <Button fx:id="primaryMeleePutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="primaryMeleeTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="primaryMeleePutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onPrimaryMeleePutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="primaryMeleeTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onPrimaryMeleeTakeOffButtonClick" text="Take off" />
                         <Label layoutX="14.0" layoutY="81.0" prefHeight="23.0" prefWidth="55.0" text="melee" />
                      </children>
                   </AnchorPane>
@@ -163,8 +163,8 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="11.0" layoutY="59.0" prefHeight="23.0" prefWidth="67.0" text="Second" />
-                        <Button fx:id="secondaryMeleePutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="secondaryMeleeTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="secondaryMeleePutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSecondaryMeleePutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="secondaryMeleeTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onSecondaryMeleeTakeOffButtonClick" text="Take off" />
                         <Label layoutX="14.0" layoutY="81.0" prefHeight="23.0" prefWidth="55.0" text="melee" />
                      </children>
                   </AnchorPane>
@@ -181,15 +181,15 @@
                            </content>
                         </ScrollPane>
                         <Label layoutX="11.0" layoutY="58.0" prefHeight="23.0" prefWidth="58.0" text="Ranged" />
-                        <Button fx:id="rangedPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="70.0" text="Put" />
-                        <Button fx:id="rangedTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" text="Take off" />
+                        <Button fx:id="rangedPutButton" layoutX="395.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRangedPutButtonClick" prefHeight="24.0" prefWidth="70.0" text="Put" />
+                        <Button fx:id="rangedTakeOffButton" layoutX="395.0" layoutY="46.0" mnemonicParsing="false" onAction="#onRangedTakeOffButtonClick" text="Take off" />
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
          </content>
       </ScrollPane>
-      <Button fx:id="backpackButton" layoutX="618.0" layoutY="784.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="157.0" text="BACKPACK" textAlignment="RIGHT" />
+      <Button fx:id="backpackButton" layoutX="618.0" layoutY="784.0" mnemonicParsing="false" onAction="#onBackpackButtonClick" prefHeight="50.0" prefWidth="157.0" text="BACKPACK" textAlignment="RIGHT" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="569.0" layoutY="784.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@slots/backpack.jpg" />

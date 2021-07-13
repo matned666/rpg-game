@@ -20,13 +20,6 @@ public class HappeningController {
     private Label description;
 
     @FXML
-    public void onResumeButtonClicked(ActionEvent event){
-        Node source = (Node)  event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
     public void onConfirmButtonClicked(ActionEvent event){
         Node source = (Node)  event.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();

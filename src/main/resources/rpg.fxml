@@ -96,6 +96,11 @@
          </GridPane>
       </children>
    </AnchorPane>
+   <ImageView fitHeight="182.0" fitWidth="181.0" layoutX="1080.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@wind_rose.png" />
+      </image>
+   </ImageView>
    <effect>
       <ColorAdjust />
    </effect>

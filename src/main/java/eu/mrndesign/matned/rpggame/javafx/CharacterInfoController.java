@@ -1,6 +1,6 @@
 package eu.mrndesign.matned.rpggame.javafx;
 
-import eu.mrndesign.matned.rpggame.core.data.items.ICreature;
+import eu.mrndesign.matned.rpggame.core.game.IHero;
 import eu.mrndesign.matned.rpggame.javafx.service.IPointService;
 import eu.mrndesign.matned.rpggame.javafx.service.PointService;
 import javafx.event.ActionEvent;
@@ -15,42 +15,39 @@ public class CharacterInfoController {
     @FXML
     private VBox charInfoVBox;
 
-    private IPointService pointService;
-    private ICreature hero;
-
 
     public void init() {
-        pointService = PointService.getInstance();
-        hero = pointService.getHero();
-        add("Name: " + hero.getName());
+        IPointService pointService = PointService.getInstance();
+        IHero hero = pointService.getHero();
+        add("Name: " + hero.get().getName());
         add("");
-        add("HP: " + hero.getHP());
-        add("PV: " + hero.getPV());
-        add("DV: " + hero.getDV());
-        add("Weight: " + hero.getWeight());
+        add("HP: " + hero.get().getHP());
+        add("PV: " + hero.get().getPV());
+        add("DV: " + hero.get().getDV());
+        add("Weight: " + hero.get().getWeight());
         add("");
         add("Attributes:");
-        add("strength: " + hero.getAttributes().getStrength());
-        add("learning: " + hero.getAttributes().getLearning());
-        add("willpower: " + hero.getAttributes().getWillpower());
-        add("dexterity: " + hero.getAttributes().getDexterity());
-        add("toughness: " + hero.getAttributes().getToughness());
-        add("charisma: " + hero.getAttributes().getCharisma());
-        add("appearance: " + hero.getAttributes().getAppearance());
-        add("mana: " + hero.getAttributes().getMana());
-        add("perception: " + hero.getAttributes().getPerception());
-        add("luck: " + hero.getAttributes().getLuck());
+        add("strength: " + hero.get().getAttributes().getStrength());
+        add("learning: " + hero.get().getAttributes().getLearning());
+        add("willpower: " + hero.get().getAttributes().getWillpower());
+        add("dexterity: " + hero.get().getAttributes().getDexterity());
+        add("toughness: " + hero.get().getAttributes().getToughness());
+        add("charisma: " + hero.get().getAttributes().getCharisma());
+        add("appearance: " + hero.get().getAttributes().getAppearance());
+        add("mana: " + hero.get().getAttributes().getMana());
+        add("perception: " + hero.get().getAttributes().getPerception());
+        add("luck: " + hero.get().getAttributes().getLuck());
         add("");
         add("Mental state:");
-        add("Scare level: " + hero.getStateOfMind().getScared());
-        add("Clear level: " + hero.getStateOfMind().getClear());
-        add("Anger level: " + hero.getStateOfMind().getAnger());
-        add("Is conscious: " + hero.getStateOfMind().isConscious());
+        add("Scare level: " + hero.get().getStateOfMind().getScared());
+        add("Clear level: " + hero.get().getStateOfMind().getClear());
+        add("Anger level: " + hero.get().getStateOfMind().getAnger());
+        add("Is conscious: " + hero.get().getStateOfMind().isConscious());
         add("");
-        add("Is fireproof: " + hero.isFireproof());
-        add("Is waterproof: " + hero.isWaterproof());
-        add("Is alive: " + hero.isAlive());
-        add("Is visible: " + hero.isVisible());
+        add("Is fireproof: " + hero.get().isFireproof());
+        add("Is waterproof: " + hero.get().isWaterproof());
+        add("Is alive: " + hero.get().isAlive());
+        add("Is visible: " + hero.get().isVisible());
 
 
     }
