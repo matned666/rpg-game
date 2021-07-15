@@ -121,7 +121,10 @@ public class Inventory extends BaseMovingObject implements IInventory {
         rHV += rHPModifier;
     }
 
-
+    @Override
+    public IAttributes getAttributes() {
+        return attributesModifier;
+    }
 
 
     @Override
@@ -236,6 +239,7 @@ public class Inventory extends BaseMovingObject implements IInventory {
             isWaterproof = false;
             fireResistance = 0;
             waterResistance = 0;
+            attributesModifier = new Attributes.AttributesBuilder().build();
         }
 
         public InventoryDTOBuilder HP(int HP) {

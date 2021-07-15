@@ -9,7 +9,6 @@ import java.util.List;
 public interface IHero {
 
     List<IInventory> getInventoryInBackpack();
-    void addObserver(IObserver observer);
 
     ICreature get();
 
@@ -69,4 +68,12 @@ public interface IHero {
     void putAmulet(IInventory inventory);
     void removeAmulet();
     IInventory getAmulet();
+
+    void putItemOnSlot1(IInventory item);
+
+    void putItemOnSlot2(IInventory item);
+
+    void useItem(IInventory item);
+
+    void dropItem(IInventory item);
 }

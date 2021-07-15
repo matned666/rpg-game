@@ -171,6 +171,20 @@ public class Attributes implements IAttributes {
         private Integer luck;
 
         public AttributesBuilder() {
+            initDefaultValues();
+        }
+
+        private void initDefaultValues() {
+            strength = 0;
+            learning = 0;
+            willpower = 0;
+            dexterity = 0;
+            toughness = 0;
+            charisma = 0;
+            appearance = 0;
+            mana = 0;
+            perception = 0;
+            luck = 0;
         }
 
         public AttributesBuilder strength(int strength){

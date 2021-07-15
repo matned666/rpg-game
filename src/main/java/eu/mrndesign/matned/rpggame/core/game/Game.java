@@ -1,6 +1,7 @@
 package eu.mrndesign.matned.rpggame.core.game;
 
 
+import eu.mrndesign.matned.rpggame.core.IObservable;
 import eu.mrndesign.matned.rpggame.core.IObserver;
 
 /**
@@ -17,8 +18,8 @@ public class Game implements IObserver {
     public void initiate(IObserver observer) {
         map = new Map();
         hero = new Hero();
-        hero.addObserver(this);
-        hero.addObserver(observer);
+        ((IObservable)hero).addObserver(this);
+        ((IObservable)hero).addObserver(observer);
           }
 
 
@@ -36,7 +37,7 @@ public class Game implements IObserver {
     }
 
     @Override
-    public void heroUpdated(String action) {
+    public void update(String action) {
 
     }
 }

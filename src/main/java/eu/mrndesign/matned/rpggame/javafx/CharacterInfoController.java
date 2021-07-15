@@ -5,18 +5,34 @@ import eu.mrndesign.matned.rpggame.javafx.service.IPointService;
 import eu.mrndesign.matned.rpggame.javafx.service.PointService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CharacterInfoController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CharacterInfoController implements Initializable, IController {
 
     @FXML
     private VBox charInfoVBox;
 
 
-    public void init() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        init();
+    }
+
+    @FXML
+    public void onResumeButtonClicked(ActionEvent event){
+        Node source = (Node)  event.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    private void init() {
         IPointService pointService = PointService.getInstance();
         IHero hero = pointService.getHero();
         add("Name: " + hero.get().getName());
@@ -55,12 +71,4 @@ public class CharacterInfoController {
     private void add(String s) {
         charInfoVBox.getChildren().add(new Label(s));
     }
-
-    @FXML
-    public void onResumeButtonClicked(ActionEvent event){
-        Node source = (Node)  event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
 }

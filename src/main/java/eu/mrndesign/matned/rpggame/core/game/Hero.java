@@ -1,5 +1,6 @@
 package eu.mrndesign.matned.rpggame.core.game;
 
+import eu.mrndesign.matned.rpggame.core.IObservable;
 import eu.mrndesign.matned.rpggame.core.IObserver;
 import eu.mrndesign.matned.rpggame.core.data.items.*;
 import eu.mrndesign.matned.rpggame.core.data.items.utils.Direction;
@@ -9,13 +10,14 @@ import javafx.scene.paint.Color;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Hero implements IHero {
+public class Hero implements IHero, IObservable {
 
     public static final double SPEED = 1D;
     public static final String MOVE_EAST = "MOVE_EAST";
     public static final String MOVE_WEST = "MOVE_WEST";
     public static final String MOVE_SOUTH = "MOVE_SOUTH";
     public static final String MOVE_NORTH = "MOVE_NORTH";
+    public static final String CANNOT_PUT_ITEM_ON = "CANNOT_PUT_ITEM_ON";
 
     private final List<IObserver> observerList;
     private final ICreature hero;
@@ -28,6 +30,7 @@ public class Hero implements IHero {
     public Hero() {
         hero = createCreature();
         createEquipment();
+        addItemsToBackPack();
         observerList = new LinkedList<>();
     }
 
@@ -285,8 +288,58 @@ public class Hero implements IHero {
         return hero.getAmulet();
     }
 
-    private void notifyObservers(String action) {
-        observerList.forEach(observer -> observer.heroUpdated(action));
+    @Override
+    public void putItemOnSlot1(IInventory item) {
+        switch (item.getInventoryType()){
+            case HELMET:{
+                putHelmet(item);
+                break;
+            }case ARMOR:{
+                putArmor(item);
+                break;
+            }case AMULET:{
+                putAmulet(item);
+                break;
+            }case GLOVES:{
+                putGloves(item);
+                break;
+            }case BELT:{
+                putBelt(item);
+                break;
+            }case MELEE:{
+                putPrimaryMeleeWeapon(item);
+                break;
+            }case RANGED:{
+                putRangedWeapon(item);
+                break;
+            }case SHOES:{
+                putShoes(item);
+                break;
+            } default:{
+                notifyObservers(CANNOT_PUT_ITEM_ON);
+            }
+        }
+    }
+
+    @Override
+    public void putItemOnSlot2(IInventory item) {
+        if (item.getInventoryType() == IInventory.InventoryType.MELEE) hero.putSecondaryMeleeWeapon(item);
+        else putItemOnSlot1(item);
+    }
+
+    @Override
+    public void useItem(IInventory item) {
+
+    }
+
+    @Override
+    public void dropItem(IInventory item) {
+
+    }
+
+    @Override
+    public void notifyObservers(String action) {
+        observerList.forEach(observer -> observer.update(action));
     }
 
     private void move(Direction direction, String notification){
@@ -381,7 +434,7 @@ public class Hero implements IHero {
                 .rHV(getRandom(0, 2))
                 .weight((double) getRandom(1, 2))
                 .build());
-        hero.putPrimaryMeleeWeapon(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.MELEE_WEAPON)
+        hero.putPrimaryMeleeWeapon(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.MELEE)
                 .name("Short sword")
                 .image("short_sword")
                 .dV(getRandom(5, 20))
@@ -392,7 +445,32 @@ public class Hero implements IHero {
                 .rHV(getRandom(1, 10))
                 .weight((double) getRandom(1, 4))
                 .build());
-        ;
+
+    }
+
+    private void addItemsToBackPack(){
+        getInventoryInBackpack().add(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.MELEE)
+                .name("Short sword")
+                .image("short_sword")
+                .dV(getRandom(5, 20))
+                .pV(getRandom(2, 10))
+                .mHC(getRandom(10, 15))
+                .mHV(getRandom(5, 20))
+                .rHC(getRandom(2, 5))
+                .rHV(getRandom(1, 10))
+                .weight((double) getRandom(1, 4))
+                .build());
+        getInventoryInBackpack().add(new Inventory.InventoryDTOBuilder(IInventory.InventoryType.HELMET)
+                .name("Leather cap")
+                .image("leather_cap")
+                .dV(getRandom(1, 2))
+                .pV(getRandom(1, 2))
+                .mHC(getRandom(0, 1))
+                .mHV(getRandom(0, 1))
+                .rHC(getRandom(0, 1))
+                .rHV(getRandom(0, 1))
+                .weight((double) getRandom(1, 2))
+                .build());
     }
 
     private int getRandom(int min, int max) {

@@ -3,6 +3,7 @@ package eu.mrndesign.matned.rpggame.javafx.service;
 import eu.mrndesign.matned.rpggame.core.IObserver;
 import eu.mrndesign.matned.rpggame.core.data.map.IMapFragment;
 import eu.mrndesign.matned.rpggame.core.game.Game;
+import eu.mrndesign.matned.rpggame.core.game.Hero;
 import eu.mrndesign.matned.rpggame.core.game.IHero;
 import eu.mrndesign.matned.rpggame.core.game.Map;
 import eu.mrndesign.matned.rpggame.javafx.utils.Variables;
@@ -97,7 +98,7 @@ public class PointService implements IPointService, IObserver {
     }
 
     @Override
-    public void heroUpdated(String action) {
+    public void update(String action) {
         switch (action) {
             case "MOVE_WEST": {
                 switchWest();
@@ -113,6 +114,10 @@ public class PointService implements IPointService, IObserver {
             }
             case "MOVE_SOUTH": {
                 switchSouth();
+                break;
+            }
+            case Hero.CANNOT_PUT_ITEM_ON:{
+                addNewLog("This item cannot be worn.");
                 break;
             }
         }

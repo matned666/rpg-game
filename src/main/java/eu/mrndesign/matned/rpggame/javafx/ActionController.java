@@ -2,14 +2,23 @@ package eu.mrndesign.matned.rpggame.javafx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-public class ActionController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ActionController implements Initializable, IController{
 
     @FXML
     private ChoiceBox<String> choiceBox;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 
     @FXML
     public void onResumeButtonClicked(ActionEvent event){
@@ -25,6 +34,5 @@ public class ActionController {
         stage.close();
 //        TODO temporary action
     }
-
 
 }

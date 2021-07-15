@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InventoryController implements Initializable {
+public class InventoryController implements Initializable, IController {
 
     @FXML
     private VBox helmetVBox;
@@ -63,18 +63,7 @@ public class InventoryController implements Initializable {
 
     private void getItem(IInventory item, VBox vBox) {
         if(item != null){
-            vBox.getChildren().clear();
-            vBox.getChildren().add(new Label("Name: " + item.getName()));
-            vBox.getChildren().add(new Label("Inventory type: " + item.getInventoryType().name()));
-            vBox.getChildren().add(new Label(""));
-            vBox.getChildren().add(new Label("HP: " + item.getHP()));
-            vBox.getChildren().add(new Label("PV: " + item.getPV()));
-            vBox.getChildren().add(new Label("DV: " + item.getDV()));
-            vBox.getChildren().add(new Label("Melee hit chance: " + item.getMeleeHitChance()));
-            vBox.getChildren().add(new Label("Melee hit points: " + item.getMeleeHitPoints()));
-            vBox.getChildren().add(new Label("Ranged hit chance: " + item.getRangedHitChance()));
-            vBox.getChildren().add(new Label("Ranged hit points: " + item.getRangedHitChance()));
-            vBox.getChildren().add(new Label("Weight: " + item.getWeight() + "kg"));
+            IInventory.addLabel(vBox, item);
         }else {
             vBox.getChildren().clear();
             vBox.getChildren().add(new Label("Empty"));
@@ -190,7 +179,7 @@ public class InventoryController implements Initializable {
 
     @FXML
     public void onBackpackButtonClick() {
-
+        Dialog.openDialog("Backpack items", "backpack");
     }
 
 

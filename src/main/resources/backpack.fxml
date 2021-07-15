@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="849.0" prefWidth="789.0" style="-fx-background-color: darkgrey;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.mrndesign.matned.rpggame.javafx.QuestLogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="849.0" prefWidth="789.0" style="-fx-background-color: darkgrey;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.mrndesign.matned.rpggame.javafx.BackpackController">
    <children>
       <ImageView fx:id="questLogImage" fitHeight="685.0" fitWidth="371.0" layoutX="569.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="569.0" AnchorPane.rightAnchor="14.5" AnchorPane.topAnchor="97.0">
          <image>

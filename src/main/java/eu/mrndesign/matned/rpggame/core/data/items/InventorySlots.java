@@ -1,10 +1,15 @@
 package eu.mrndesign.matned.rpggame.core.data.items;
 
+import eu.mrndesign.matned.rpggame.core.IObservable;
+import eu.mrndesign.matned.rpggame.core.IObserver;
+
 import java.util.LinkedList;
 import java.util.List;
 
-public class InventorySlots implements IInventorySlots {
+public class InventorySlots implements IInventorySlots, IObservable {
 
+
+    private final List<IObserver> observers;
     private final List<IInventory> inventoryInBackpack;
     private IInventory helmet;
     private IInventory armor;
@@ -17,6 +22,7 @@ public class InventorySlots implements IInventorySlots {
     private IInventory amulet;
 
     public InventorySlots() {
+        observers = new LinkedList<>();
         inventoryInBackpack = new LinkedList<>();
     }
 
@@ -29,7 +35,11 @@ public class InventorySlots implements IInventorySlots {
     public void putHelmet(IInventory inventory) {
         if (inventory != null)
             if (inventory.getInventoryType() == IInventory.InventoryType.HELMET)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeHelmet();
                 this.helmet = inventory;
+            }
     }
 
     @Override
@@ -48,7 +58,11 @@ public class InventorySlots implements IInventorySlots {
     public void putArmor(IInventory inventory) {
         if (inventory != null)
             if (inventory.getInventoryType() == IInventory.InventoryType.ARMOR)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeArmor();
                 this.armor = inventory;
+            }
     }
 
     @Override
@@ -67,7 +81,11 @@ public class InventorySlots implements IInventorySlots {
     public void putShoes(IInventory inventory) {
         if (inventory != null)
             if (inventory.getInventoryType() == IInventory.InventoryType.SHOES)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeShoes();
                 this.shoes = inventory;
+            }
     }
 
     @Override
@@ -86,7 +104,11 @@ public class InventorySlots implements IInventorySlots {
     public void putGloves(IInventory inventory) {
         if (inventory != null)
             if (inventory.getInventoryType() == IInventory.InventoryType.GLOVES)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeGloves();
                 this.gloves = inventory;
+            }
     }
 
     @Override
@@ -105,7 +127,11 @@ public class InventorySlots implements IInventorySlots {
     public void putBelt(IInventory inventory) {
         if (inventory != null)
             if (inventory.getInventoryType() == IInventory.InventoryType.BELT)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeBelt();
                 this.belt = inventory;
+            }
     }
 
     @Override
@@ -123,8 +149,12 @@ public class InventorySlots implements IInventorySlots {
     @Override
     public void putPrimaryMeleeWeapon(IInventory inventory) {
         if (inventory != null)
-            if (inventory.getInventoryType() == IInventory.InventoryType.MELEE_WEAPON)
+            if (inventory.getInventoryType() == IInventory.InventoryType.MELEE)
+            {
+                inventoryInBackpack.remove(inventory);
+                removePrimaryMeleeWeapon();
                 this.primaryMeleeWeapon = inventory;
+            }
     }
 
     @Override
@@ -142,8 +172,12 @@ public class InventorySlots implements IInventorySlots {
     @Override
     public void putSecondaryMeleeWeapon(IInventory inventory) {
         if (inventory != null)
-            if (inventory.getInventoryType() == IInventory.InventoryType.MELEE_WEAPON)
+            if (inventory.getInventoryType() == IInventory.InventoryType.MELEE)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeSecondaryMeleeWeapon();
                 this.secondaryMeleeWeapon = inventory;
+            }
     }
 
     @Override
@@ -161,8 +195,11 @@ public class InventorySlots implements IInventorySlots {
     @Override
     public void putRangedWeapon(IInventory inventory) {
         if (inventory != null)
-            if (inventory.getInventoryType() == IInventory.InventoryType.RANGED_WEAPON)
+            if (inventory.getInventoryType() == IInventory.InventoryType.RANGED) {
+                inventoryInBackpack.remove(inventory);
+                removeRangedWeapon();
                 this.rangedWeapon = inventory;
+            }
     }
 
     @Override
@@ -181,18 +218,33 @@ public class InventorySlots implements IInventorySlots {
     public void putAmulet(IInventory inventory) {
         if (inventory != null)
             if (inventory.getInventoryType() == IInventory.InventoryType.AMULET)
+            {
+                inventoryInBackpack.remove(inventory);
+                removeAmulet();
                 this.amulet = inventory;
+            }
     }
 
     @Override
     public void removeAmulet() {
         if (this.amulet != null)
             inventoryInBackpack.add(this.amulet);
+        notifyObservers("");
         this.amulet = null;
     }
 
     @Override
     public IInventory getAmulet() {
         return this.amulet;
+    }
+
+    @Override
+    public void addObserver(IObserver observer) {
+        if (observer != null) observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers(String action) {
+        observers.forEach(observer -> observer.update(action));
     }
 }

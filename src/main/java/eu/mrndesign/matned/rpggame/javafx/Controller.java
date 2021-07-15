@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -34,8 +35,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         isPlaying = false;
         scrollPane.vvalueProperty().bind(logsVBox.heightProperty());
         pointService = PointService.getInstance();
@@ -46,52 +45,28 @@ public class Controller implements Initializable {
 
 
     @FXML
-    public void onOpenMenuDialog(ActionEvent event){
-        pointService.addNewLog("Menu dialog has been initiated");
-        List<Object> list = setStage("menu");
-        FXMLLoader loader = (FXMLLoader) list.get(0);
-        AnchorPane parent = (AnchorPane) list.get(1);
-        MenuController controller = loader.getController();
-        nextStage("Menu screen", parent);
+    public void onOpenMenuDialog(){
+        Dialog.openDialog("Menu", "menu");
     }
 
     @FXML
-    void onCharacterButtonClicked(ActionEvent event){
-        pointService.addNewLog("Character dialog has been initiated");
-        List<Object> list = setStage("characterInfo");
-        FXMLLoader loader = (FXMLLoader) list.get(0);
-        AnchorPane parent = (AnchorPane) list.get(1);
-        CharacterInfoController controller = loader.getController();
-        controller.init();
-        nextStage("Character information screen", parent);
+    void onCharacterButtonClicked(){
+        Dialog.openDialog("Character", "characterInfo");
     }
 
     @FXML
-    void onQuestLogButtonClicked(ActionEvent event){
-        pointService.addNewLog("Quest log dialog has been initiated");
-        List<Object> list = setStage("questlog");
-        FXMLLoader loader = (FXMLLoader) list.get(0);
-        AnchorPane parent = (AnchorPane) list.get(1);
-        QuestLogController controller = loader.getController();
-        nextStage("Quest log screen", parent);
+    void onQuestLogButtonClicked(){
+        Dialog.openDialog("Quest log", "questlog");
     }
 
     @FXML
-    void onInventoryButtonClicked(ActionEvent event){
-        pointService.addNewLog("Inventory dialog has been initiated");
-        List<Object> list = setStage("inventory");
-        InventoryController controller = ((FXMLLoader)list.get(0)).getController();
-        nextStage("Inventory screen", ((AnchorPane) list.get(1)));
+    void onInventoryButtonClicked(){
+        Dialog.openDialog("Inventory", "inventory");
     }
 
     @FXML
-    void onPlayPauseButtonClicked(ActionEvent event){
-        pointService.addNewLog("Action dialog has been initiated");
-        List<Object> list = setStage("actionDialog");
-        FXMLLoader loader = (FXMLLoader) list.get(0);
-        AnchorPane parent = (AnchorPane) list.get(1);
-        ActionController controller = loader.getController();
-        nextStage("Action screen", parent);
+    void onPlayPauseButtonClicked(){
+        Dialog.openDialog("Action", "actionDialog");
     }
 
     @FXML
@@ -116,33 +91,5 @@ public class Controller implements Initializable {
 
 
 
-    private List<Object> setStage(String file) {
-        List<Object> list = new LinkedList<>();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                .getResource("/"+file+".fxml"));
-        AnchorPane parent = null;
-        try {
-            parent = fxmlLoader.load();
-            list.add(fxmlLoader);
-            list.add(parent);
-            return list;
-        } catch (IOException e) {
-            e.printStackTrace();
-            pointService.addNewLog("Exception happened:");
-            pointService.addNewLog(e.getMessage());
-            return null;
-        }
-    }
 
-    private void nextStage(String title, AnchorPane parent) {
-        Scene scene = new Scene(parent);
-        scene.getStylesheets().add(getClass().getResource("/styles.css").toString());
-        Stage stage = new Stage();
-        stage.setTitle(title);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-        pointService.addNewLog("Stage >"+ title +"< has been set");
-    }
 }

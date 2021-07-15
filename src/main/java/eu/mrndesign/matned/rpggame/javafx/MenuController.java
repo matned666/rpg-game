@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-public class MenuController {
+public class MenuController implements IController {
 
 
     @FXML
